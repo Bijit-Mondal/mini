@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="/images/youtube.png" id="icon" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='/stylesheets/picnic.css' />
+  <style>
+    .line {
+      width: 25px;
+      height: 2px;
+      background-image: linear-gradient(#10003F, #288C3F, #8C282F);
+      margin: 5px 3px;
+    }
+    #onsearch{
+      display: none;
+    }
+    .cyan{
+      background-color: turquoise;
+      color: black;
+    }
+    .url-box {
+      width: 517px;
+      height: 41px;
+    }
+
+    .url-box-with_go {
+      padding-left: 590px;
+      padding-top: 10px;
+    }
+
+    nav {
+      position: absolute;
+    }
+
+    @media screen and (max-width:1000px) {
+      .url-box {
+        width: 251px;
+        height: 41px;
+      }
+
+      .url-box-with_go {
+        padding-left: 31px;
+      }
+    }
+  </style>
+  <title>Light Weight Youtube Downloader</title>
+</head>
+
+<body>
+  <!--navbar-->
+  <div style="overflow: hidden;height: 250px;"></div>
+  <!-- For Demo, Represents the body -->
+  <nav class="demo">
+    <a class="brand">
+      <img class="logo" src="/images/youtube.png" />
+      <span>Utube</span>
+    </a>
+
+    <!-- responsive-->
+    <input id="bmenub" type="checkbox" class="show">
+    <label for="bmenub" class="burger pseudo button">
+      <div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </label>
+
+    <div class="menu">
+      <a href="" class="pseudo button icon-picture">Home</a>
+      <a href="mailto:bijitmondal567@gmail.com" class="button cyan icon-puzzle">Contact Me</a>
+      <label for="modal_1" class="button">Search By Words</label>
+    </div>
+  </nav>
+  </div>
+  <!--Url Bar-->
+  <form id="myForm">
+  <fieldset class="flex">
+    <label class="url-box-with_go">
+      <input type="text" class="url-box" id="url"required placeholder="Paste The url like https://youtu.be/Sx2!jd">
+      <button class='warning' name="submit">Go</button>
+    </label>
+  </fieldset>
+  </form>
+  <!--search modal-->
+  <form action="javascript:Search()">
+  <div class="modal">
+    <input id="modal_1" type="checkbox" />
+    <label for="modal_1" class="overlay"></label>
+    <article>
+      <header>
+        <h3>Search Anything</h3>
+        <label for="modal_1" class="close">&times;</label>
+      </header>
+      <section class="content">
+        <fieldset class="flex one">
+          <label>
+            <input type="search" id="search" placeholder="Enter Your Query"></input>
+          </label>
+        </fieldset>
+      </section>
+      <footer>
+        <label for="modal_1" class="button dangerous">
+          Cancel
+        </label>
+        <button class="cyan" type="submit" id="searchbtn">Search</button>
+        <label for="modal_2" id="onsearch" class="button">Open Result</label>
+      </footer>
+    </article>
+  </div>
+</form>
+  <!--search result in modal 2-->
+  <div class="modal">
+    <input id="modal_2" type="checkbox" />
+    <label for="modal_2" class="overlay"></label>
+    <article>
+      <header>
+        <h3>Search Result</h3>
+        <label for="modal_2" class="close">&times;</label>
+      </header>
+      <section class="content">
+        <fieldset class="flex one container">
+          <!--search results-->
+          <!--It Will Come Here-->
+        </fieldset>
+      </section>
+      <footer>
+        <label for="modal_2" class="button dangerous">
+          Cancel
+        </label>
+      </footer>
+    </article>
+  </div>
+</body>
+<script>
+  document.onkeydown = function (e) {
+    if (e.keyCode == 27) {
+      var mods = document.querySelectorAll('.modal > [type=checkbox]');
+      [].forEach.call(mods, function (mod) { mod.checked = false; });
+    }
+  }
+</script>
+<script src="/javascripts/script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script>
+  var result = document.querySelector('#onsearch');
+  var search = document.querySelector('#searchbtn');
+  var onButtonClick = function(){
+    result.style.display = "block";
+  };
+  search.addEventListener("click",onButtonClick);
+</script>
+<script>
+  var form = document.getElementById("myForm");
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var url = document.getElementById("url").value;
+
+
+    // split splits up the strings
+
+    const id  = url.split(".be/")[1].substring(0, 11);
+    const newurl="https://loader.to/api/button/?f=m4a&url=https://youtube.com/watch?v="+id+"&color=48D1CC";
+    location.replace(newurl);
+})
+</script>
+</html>
